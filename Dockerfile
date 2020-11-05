@@ -6,8 +6,8 @@ RUN apk update && apk add /bin/sh
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 
-COPY target/spring-boot-mongo-1.0.jar $PROJECT_HOME/spring-boot-mongo.jar
+COPY target/jenkins-docker-k8s-project-1.0.jar $PROJECT_HOME/jenkins-docker-k8s-project-1.0.jar
 
 WORKDIR $PROJECT_HOME
 
-CMD ["java" ,"-jar","./spring-boot-mongo.jar"]
+CMD ["java" ,"-jar","./jenkins-docker-k8s-project-1.0.jar"]
