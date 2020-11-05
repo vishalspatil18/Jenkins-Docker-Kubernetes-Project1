@@ -11,7 +11,7 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mt</groupId>
-	<artifactId>jenkins-docker-k8-project</artifactId>
+	<artifactId>jenkins-docker-k8s-project</artifactId>
 	<version>1.0</version>
 	<properties>
 		<java.version>1.8</java.version>
