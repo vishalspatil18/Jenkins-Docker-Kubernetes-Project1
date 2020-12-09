@@ -9,16 +9,15 @@ node{
       sh "${mavenCMD} clean package"
     }
     
-    stage('Build Docker Image'){
-        sh 'docker image rm -f ameintu/jenkins-docker-k8s-project'
-        sh 'docker build -t ameintu/jenkins-docker-k8s-project .'
+    stage('Build Docker Image'){        
+        sh "docker build -t ameintu/jenkins-docker-k8s-project:${env.BUILD_ID} ."
     }
     
     stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
             sh "docker login -u ameintu -p ${DOCKER_HUB_CREDENTIALS}"
         }
-        sh 'docker push ameintu/jenkins-docker-k8s-project'
+        sh "docker push ameintu/jenkins-docker-k8s-project:${env.BUILD_ID}"
     }
     
     stage("Deploy Application in K8S Cluster"){
@@ -31,6 +30,7 @@ node{
     
      /**
      stage("Deploy To Kuberates Cluster"){
+     	sh "sed -i 's/tagversion/${env.BUILD_ID}/g' springBootMongo.yml"
         sh 'kubectl apply -f springBootMongo.yml'
      } **/
 	
