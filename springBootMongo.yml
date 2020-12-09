@@ -23,7 +23,7 @@ spec:
         app: springboot
     spec:
       containers:
-      - image: ameintu/jenkins-docker-k8s-project
+      - image: ameintu/jenkins-docker-k8s-project:tagversion
         name: springboot
         ports:
         - containerPort: 8080  
